@@ -13,6 +13,7 @@ rm -rf /usr/share/transmission
 rm -rf /etc/init.d/transmissiond
 
 Transmissionbt 安装教程：
+
 git clone https://github.com/xlf1234/transmission-centos.git 
 cd /root/transmission-centos/2.84
 sh transmissionbt.sh
