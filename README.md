@@ -68,3 +68,5 @@ Starting transmission-daemon: This account is currently not available.
 vi修改/etc/passwd
 
 将transmission这一行的/sbin/nologin改成/bin/bash
+
+WEB界面：https://github.com/xlf1234/transmission-web-control
