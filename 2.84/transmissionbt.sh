@@ -9,15 +9,16 @@ rm -rf /home/transmission
 rm -rf /usr/share/transmission
 mkdir /home/transmission
 mv -f /home/Downloads /home/transmission
-cd /root
-wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/intltool-0.40.6.tar.gz -O intltool-0.40.6.tar.gz
+cd /root/transmission-centos/2.84
+#wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/intltool-0.40.6.tar.gz -O intltool-0.40.6.tar.gz
 tar zxf intltool-0.40.6.tar.gz
 cd intltool-0.40.6
 ./configure --prefix=/usr
 make -s
 make -s install
-cd ..
-wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/libevent-2.0.21-stable.tar.gz -O libevent-2.0.21-stable.tar.gz
+#cd ..
+#wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/libevent-2.0.21-stable.tar.gz -O libevent-2.0.21-stable.tar.gz
+cd /root/transmission-centos/2.84
 tar zxf libevent-2.0.21-stable.tar.gz
 cd libevent-2.0.21-stable
 ./configure
@@ -29,8 +30,8 @@ ln -s /usr/local/lib/libevent-2.0.so.5.1.9 /usr/lib/libevent-2.0.so.5.1.9
 ln -s /usr/lib/libevent-2.0.so.5 /usr/local/lib/libevent-2.0.so.5
 ln -s /usr/lib/libevent-2.0.so.5.1.9 /usr/local/lib/libevent-2.0.so.5.1.9
 echo install Transmisson
-cd /root
-wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/transmission-2.84.tar.xz -O transmission-2.84.tar.xz
+cd /root/transmission-centos/2.84
+#wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/transmission-2.84.tar.xz -O transmission-2.84.tar.xz
 tar Jxvf transmission-2.84.tar.xz
 cd transmission-2.84
 ./configure --prefix=/usr
@@ -38,17 +39,19 @@ make -s
 make -s install
 useradd -m transmission
 passwd -d transmission
-wget http://github.itzmx.com/1265578519/transmission/master/2.84/transmission.sh -O /etc/init.d/transmissiond
+cd /root/transmission-centos/2.84
+mv -f transmission.sh /etc/init.d/transmissiond
+#wget http://github.itzmx.com/1265578519/transmission/master/2.84/transmission.sh -O /etc/init.d/transmissiond
 chmod 755 /etc/init.d/transmissiond
 chkconfig --add transmissiond
 chkconfig --level 2345 transmissiond on
 mkdir -p /home/transmission/Downloads/
 chmod g+w /home/transmission/Downloads/
-wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/settings.json
+#wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/settings.json
 mkdir -p /home/transmission/.config/transmission/
 mv -f settings.json /home/transmission/.config/transmission/settings.json
 chown -R transmission.transmission /home/transmission
-wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/index.html
+#wget -c http://github.itzmx.com/1265578519/transmission/master/2.84/index.html
 mv -f index.html /usr/share/transmission/web/index.html
 service transmissiond start
 iptables -t nat -F
